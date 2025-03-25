@@ -16,7 +16,7 @@ start:
 	NODE_ENV=production npm start
 
 dev:
-	NODE_ENV=development npx concurrently "npm run start:frontend" "npm run start:backend"
+	npm run dev
 
 lint:
 	npx eslint .

@@ -21,7 +21,7 @@ module.exports = {
     database: process.env.DATABASE_NAME || 'postgres',
     username: process.env.DATABASE_USERNAME || 'postgres',
     password: process.env.DATABASE_PASSWORD || 'password',
-    host: process.env.DATABASE_HOST || 'localhost', // Измените с 'db' на 'localhost'
+    host: process.env.DATABASE_HOST || 'db',
     port: process.env.DATABASE_PORT || 5432,
     // Опционально можно добавить:
     // migrations: {
