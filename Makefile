@@ -1,7 +1,7 @@
 setup: install db-migrate
 
 install:
-	npm install
+	npm ci
 
 db-migrate:
 	npm run migrate
@@ -13,16 +13,10 @@ prepare-env:
 	cp -n .env.example .env
 
 start:
-	NODE_ENV=production npm run start
+	NODE_ENV=production npm start
 
 dev:
-	npx concurrently "make start-frontend" "make start-backend"
-
-start-backend:
-	npm start -- --watch --verbose-watch --ignore-watch='node_modules .git .sqlite'
-
-start-frontend:
-	npx webpack --watch --progress
+	NODE_ENV=development npx concurrently "npm run start:frontend" "npm run start:backend"
 
 lint:
 	npx eslint .
@@ -31,7 +25,7 @@ lint-fix:
 	npx eslint --fix .
 
 test:
-	NODE_ENV=test npm test -s
+	NODE_ENV=test npm test
 
 ci:
 	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app

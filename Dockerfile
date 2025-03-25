@@ -1,17 +1,17 @@
 # Используем базовый образ Node.js версии 20.12.2
-FROM node:20.12.2
+FROM node:20.12.2-alpine
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Копируем package.json и package-lock.json (если есть)
+# Копируем только package.json и package-lock.json
 COPY package*.json ./
 
 # Устанавливаем зависимости
-RUN npm install
+RUN npm ci --only=production
 
-# Копируем остальные файлы проекта
-COPY . .
+# Устанавливаем пользователя с ограниченными правами
+USER node
 
-# Команда для запуска тестов (по умолчанию)
-CMD ["make", "test"]
+# Команда по умолчанию
+CMD ["npm", "start"]

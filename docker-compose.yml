@@ -1,12 +1,7 @@
 version: '3.8'
-
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./app:/app
+    image: ${DOCKER_USERNAME}/devops-example-app:latest  # Использование продакшен образа
     environment:
       DATABASE_HOST: db
       DATABASE_NAME: postgres
@@ -15,8 +10,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: make dev
-
+    command: npm start
   db:
     image: postgres:latest
     environment:
