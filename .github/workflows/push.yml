@@ -34,8 +34,7 @@ jobs:
         run: npm ci
 
       - name: Run migrations
-        run: |
-          npm run migrate
+        run: npm run migrate
         env:
           DATABASE_HOST: localhost
           DATABASE_NAME: postgres
@@ -43,9 +42,29 @@ jobs:
           DATABASE_PASSWORD: password
 
       - name: Run tests
-        run: npm test
+        run: make test
         env:
           DATABASE_HOST: localhost
           DATABASE_NAME: postgres
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: password
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devops-example-app:latest
