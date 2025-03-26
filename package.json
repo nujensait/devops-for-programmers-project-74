@@ -13,9 +13,9 @@
       "pretest": "sequelize db:migrate:undo && npm run migrate",
       "test": "jest --verbose --runInBand",
       "prestart": "npm run migrate",
-      "start": "fastify start -a 0.0.0.0 -p 8080 server/plugin.js -l debug -P -o",
+      "start": "fastify start -a 0.0.0.0 -p 8080 app/server/plugin.js -l debug -P -o",
       "predev": "npm run migrate",
-      "dev": "fastify start -a 0.0.0.0 -p 8080 server/plugin.js -l debug -P -o"
+      "dev": "fastify start -a 0.0.0.0 -p 8080 app/server/plugin.js -l debug -P -o"
    },
    "jest": {
       "modulePathIgnorePatterns": [
