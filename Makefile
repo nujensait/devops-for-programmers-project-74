@@ -34,7 +34,5 @@ ci:
 
 code-setup:
 	mkdir -p code
-	cd code
-    ln -s ./../app app
-    cd ../
+	cd code && ln -s ../ app
 	make setup
