@@ -1,4 +1,6 @@
-setup: install db-migrate
+setup:
+	make install
+	make db-migrate
 
 install:
 	npm ci
