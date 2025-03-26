@@ -33,4 +33,8 @@ ci:
 	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
 code-setup:
+	mkdir -p code
+	cd code
+    ln -s ./../app app
+    cd ../
 	make setup
