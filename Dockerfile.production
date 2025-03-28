@@ -1,12 +1,17 @@
 FROM node:20.12.2
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --omit=dev
+# Копируем файлы зависимостей
+COPY ./app/package.json ./app/package-lock.json ./
 
-COPY . .
-RUN npm run build
+# Устанавливаем зависимости (используем npm install вместо ci для большей гибкости)
+RUN npm install --omit=dev
+
+# Копируем остальные файлы
+COPY ./app .
 
 EXPOSE 8080
 ENV NODE_ENV=production
-CMD ["npm", "start"]
+RUN make build
+
+CMD ["make", "start"]

@@ -7,3 +7,6 @@ dist/
 .dockerignore
 Dockerfile
 docker-compose.*
+
+# Не игнорировать package-lock.json
+!**/package-lock.json

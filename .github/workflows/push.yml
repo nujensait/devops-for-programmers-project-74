@@ -20,6 +20,13 @@ jobs:
         run: |
           cd app && npm install --package-lock-only
 
+      - name: Verify package-lock.json
+        run: |
+          if [ ! -f "app/package-lock.json" ]; then
+            echo "Error: package-lock.json not found in app directory"
+            exit 1
+          fi
+
       - name: Set up Docker
         uses: docker/setup-qemu-action@v2
 
