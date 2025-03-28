@@ -4,7 +4,7 @@ setup:
 test:
     # Ждем пока БД будет готова
     @while ! pg_isready -h postgres -p 5432; do sleep 1; done
-    npm test
+    NODE_ENV=test npm test
 
 dev:
     npm start
