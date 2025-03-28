@@ -25,6 +25,10 @@ jobs:
       - name: Hello
         run: |
           echo "START WF: push.yml"
+          echo "Current dir: "
+          pwd
+          echo "Dir files: "
+          ls
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -57,7 +61,6 @@ jobs:
 
       - name: Run tests
         run: |
-          cd app
           make test
         env:
           DATABASE_HOST: localhost
