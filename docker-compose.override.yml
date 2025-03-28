@@ -11,6 +11,7 @@ services:
       - ./app:/app
     command: make dev
     environment:
+      SEQUELIZE_PATH: config/config.js
       NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432

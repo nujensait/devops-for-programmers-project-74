@@ -7,7 +7,7 @@
       "node": ">=20.x"
    },
    "scripts": {
-      "migrate": "sequelize db:migrate --config app/config/config.js --env test",
+      "migrate": "sequelize db:migrate --config $SEQUELIZE_PATH --env test",
       "migrate:dev": "sequelize db:migrate --config app/config/config.js --env development",
       "prebuild": "rm -rf dist",
       "build": "webpack",
@@ -62,11 +62,12 @@
       "npm-check-updates": "^16.14.18",
       "objection": "^3.1.4",
       "objection-unique": "^1.2.2",
-      "pg": "^8.11.5",
+      "pg": "^8.14.1",
+      "pg-hstore": "^2.3.4",
       "pino-pretty": "^11.0.0",
       "pug": "^3.0.2",
       "qs": "^6.12.1",
-      "sequelize": "^6.37.3",
+      "sequelize": "^6.37.7",
       "sequelize-cli": "^6.6.2",
       "sqlite3": "^5.1.7",
       "webpack": "^5.91.0",

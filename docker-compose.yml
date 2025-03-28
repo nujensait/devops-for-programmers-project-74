@@ -21,6 +21,7 @@ services:
       dockerfile: Dockerfile.production
     image: mishaikon/devops-for-programmers-project-74
     environment:
+      SEQUELIZE_PATH: config/config.js
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
@@ -31,6 +32,9 @@ services:
       postgres:
         condition: service_healthy
     command: sh -c "npm run migrate && make test"
+    volumes:
+      - ./app/config:/app/config  # Монтируем папку с конфигом
+      - ./app/migrations:/app/migrations  # И папку с миграциями
 
 volumes:
   postgres_data:
