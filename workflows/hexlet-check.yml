@@ -18,12 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create symlink for code/app
-        run: |
-          mkdir code
-          cd code
-          ln -s ./../app app
-
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
