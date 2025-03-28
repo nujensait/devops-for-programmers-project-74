@@ -18,6 +18,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Hello
+        run: |
+          echo "START WF: hexlet-check.yml"
+          echo "Current dir: "
+          pwd
+          echo "Dir files: "
+          ls
+
+      - name: Verify package.json
+        run: |
+          if [ ! -f "app/package.json" ]; then
+            echo "Error: package.json not found in app directory"
+            exit 1
+          fi
+
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
