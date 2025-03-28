@@ -2,23 +2,26 @@
 FROM node:20.12.2 AS builder
 WORKDIR /app
 
-# Копируем и устанавливаем зависимости (включая dev-зависимости)
-COPY package*.json ./
-# RUN npm ci --include=dev
-RUN npm install --include=dev
+# Копируем файлы зависимостей из папки app
+COPY ./app/package.json ./app/package-lock.json ./
 
-# Копируем исходный код и собираем проект
-COPY . .
+# Устанавливаем зависимости (включая dev)
+RUN npm install
+
+# Копируем исходный код
+COPY ./app .
+
+# Собираем проект
 RUN npm run build
 
 # Финальная стадия
 FROM node:20.12.2
 WORKDIR /app
 
-# Копируем только необходимое из стадии сборки
+# Копируем только необходимое
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
-COPY package*.json ./
+COPY ./app/package*.json ./
 
 ENV NODE_ENV=production
 EXPOSE 8080
