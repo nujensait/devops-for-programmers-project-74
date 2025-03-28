@@ -61,7 +61,7 @@ jobs:
 
       - name: Run tests
         run: |
-          cd app  # Переход в директорию проекта
+          [ -d app ] && cd app  # Переход в директорию проекта
           npx sequelize db:migrate:undo
           npm run migrate
           make test
