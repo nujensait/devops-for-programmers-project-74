@@ -8,7 +8,7 @@ RUN apk add --no-cache python3 make gcc g++
 WORKDIR /app
 
 # Копируем только package.json и package-lock.json
-COPY package*.json ./
+COPY package.json ./
 
 # Устанавливаем зависимости
 RUN npm ci --only=production

@@ -18,6 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+
+      - name: Hello
+        run: |
+          echo "START WF: hexlet-check.yml"
+
       - name: Hexlet project check
         uses: hexlet/project-action@release
         with:
