@@ -1,0 +1,65 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hello
+        run: |
+          echo "START WF: check.yml"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Debug Project Structure
+        run: |
+          pwd
+          ls -la
+          echo "Contents of code directory:"
+          ls -la code/ || echo "No 'code' directory found"
+
+      - name: Verify Dockerfile
+        run: |
+          if [ -f Dockerfile ]; then
+            echo "Dockerfile found in root directory"
+            cat Dockerfile
+          elif [ -f code/Dockerfile ]; then
+            echo "Dockerfile found in code directory"
+            cat code/Dockerfile
+          else
+            echo "Error: Dockerfile not found"
+            exit 1
+          fi
+
+      - name: Verify docker-compose files
+        run: |
+          ls docker-compose*.yml
+          cat docker-compose.yml
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Check GITHUB_WORKSPACE
+        run: |
+          echo "GITHUB_WORKSPACE value is: $GITHUB_WORKSPACE"
+          ls -la $GITHUB_WORKSPACE
+
+      - name: Build Docker images
+        run: |
+          # Ensure we're in the correct directory
+          cd ${GITHUB_WORKSPACE}
+          
+          # Build using docker-compose
+          docker-compose build
+
+      - name: Run tests
+        run: |
+          # Run tests using docker-compose
+          docker-compose up --abort-on-container-exit --exit-code-from app
