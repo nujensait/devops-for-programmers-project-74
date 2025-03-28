@@ -30,7 +30,6 @@ jobs:
           node-version: '20.x'
           cache: 'npm'
       - run: |
-          if [ -d app ]; then cd app; fi
           make setup
           make lint
           make test
