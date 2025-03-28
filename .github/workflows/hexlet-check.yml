@@ -33,6 +33,13 @@ jobs:
             exit 1
           fi
 
+      - name: Verify Sequelize config
+        run: |
+          if [ ! -f "app/config/config.json" ]; then
+            echo "Error: Sequelize config not found"
+            exit 1
+          fi
+
       - name: Run tests
         run: |
           docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app

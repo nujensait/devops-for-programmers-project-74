@@ -3,6 +3,7 @@ WORKDIR /app
 
 # Сначала копируем только файлы зависимостей
 COPY ./app/package.json ./app/package-lock.json ./
+COPY ./app/config ./app/config
 
 RUN npm install
 
