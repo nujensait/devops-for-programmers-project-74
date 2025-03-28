@@ -25,10 +25,10 @@ start-frontend:
 	npx webpack --watch --progress
 
 lint:
-	npx eslint .
+	npx eslint . --ext .js,.jsx,.cjs,.mjs
 
 lint-fix:
-	npx eslint --fix .
+	npx eslint . --ext .js,.jsx,.cjs,.mjs --fix
 
 test:
 	NODE_ENV=test npm test -s
