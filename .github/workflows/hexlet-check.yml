@@ -35,7 +35,7 @@ jobs:
 
       - name: Verify Sequelize config
         run: |
-          if [ ! -f "app/config/config.json" ]; then
+          if [ ! -f "app/config/config.js" ]; then
             echo "Error: Sequelize config not found"
             exit 1
           fi
