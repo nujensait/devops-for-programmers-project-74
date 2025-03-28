@@ -22,6 +22,10 @@ jobs:
       - name: Hello
         run: |
           echo "START WF: hexlet-check.yml"
+          echo "Current dir: "
+          pwd
+          echo "Dir files: "
+          ls
 
       - name: Hexlet project check
         uses: hexlet/project-action@release

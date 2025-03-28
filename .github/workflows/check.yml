@@ -11,6 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Hello
+        run: |
+          echo "START WF: check.yml"
+          echo "Current dir: "
+          pwd
+          echo "Dir files: "
+          ls
+
       - name: Checkout code
         uses: actions/checkout@v4
 
