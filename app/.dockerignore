@@ -2,3 +2,8 @@ node_modules/
 dist/
 .env
 *.sqlite
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.*

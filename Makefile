@@ -26,3 +26,7 @@ docker-pull:
 
 ci:
 	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+
+migrate:
+    @while ! pg_isready -h postgres -p 5432; do sleep 1; done
+    npm run migrate

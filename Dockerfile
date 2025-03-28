@@ -1,5 +1,9 @@
 FROM node:20.12.2
 WORKDIR /app
-COPY . .
+
+COPY package*.json ./
 RUN npm install
-CMD ["make", "test"]
+
+COPY . .
+
+CMD ["make", "dev"]

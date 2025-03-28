@@ -6,12 +6,17 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"  # Оставляем для прямого доступа при необходимости
+      - "8080:8080"
     volumes:
       - ./app:/app
     command: make dev
     environment:
       NODE_ENV: development
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: app_db
 
   caddy:
     image: caddy:2-alpine
@@ -29,3 +34,4 @@ services:
 volumes:
   caddy_data:
   caddy_config:
+  postgres_data:
