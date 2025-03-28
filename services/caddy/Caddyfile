@@ -1,0 +1,17 @@
+localhost {
+  log {
+    format json
+  }
+
+  # Компрессия
+  encode zstd gzip
+
+  # Самоподписанный сертификат
+  tls internal
+
+  # Перенаправление HTTP -> HTTPS
+  redir / https://localhost{uri} permanent
+
+  # Проксирование на наше приложение
+  reverse_proxy /* app:8080
+}
