@@ -30,3 +30,6 @@ ci:
 migrate:
     @while ! pg_isready -h postgres -p 5432; do sleep 1; done
     npm run migrate
+
+build:
+    npx webpack
