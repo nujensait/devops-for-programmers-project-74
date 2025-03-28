@@ -21,3 +21,6 @@ docker-push:
 
 docker-pull:
     docker pull mishaikon/devops-for-programmers-project-74
+
+ci:
+	docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
