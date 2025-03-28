@@ -1,42 +1,43 @@
 setup:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	make install
 	make db-migrate
 
 install:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
+	npm install
 	npm ci
 
 db-migrate:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	npm run migrate
 
 build:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	npm run build
 
 prepare-env:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	cp -n .env.example .env
 
 start:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	NODE_ENV=production npm start
 
 dev:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	npm run dev
 
 lint:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	npx eslint .
 
 lint-fix:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	npx eslint --fix .
 
 test:
-	[ -d app ] && cd app
+	if [ -d app ]; then cd app; fi
 	NODE_ENV=test npm test
 
 ci:

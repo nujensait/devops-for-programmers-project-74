@@ -15,6 +15,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Hello
+        run: |
+          echo "START WF: hexlet-check.yml"
+          echo "Current dir: "
+          pwd
+          echo "Dir files: "
+          ls
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
