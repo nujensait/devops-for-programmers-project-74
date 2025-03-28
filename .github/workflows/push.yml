@@ -40,18 +40,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd app
+          if [ -d app ]; then cd app; fi
           npm ci   # npm install
 
       - name: Check package-lock.json
         run: |
           ls
-          cd app
+          if [ -d app ]; then cd app; fi
           cat package-lock.json || echo "package-lock.json not found"
 
       - name: Run migrations
         run: |
-          cd app
+          if [ -d app ]; then cd app; fi
           npm run migrate
         env:
           DATABASE_HOST: localhost
