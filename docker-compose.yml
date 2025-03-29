@@ -31,7 +31,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: sh -c "npm run migrate && make test"
+    command: sh -c "npm run migrate && npm test"
     volumes:
       - ./app/config:/app/config  # Монтируем папку с конфигом
       - ./app/migrations:/app/migrations  # И папку с миграциями
