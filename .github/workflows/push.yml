@@ -66,5 +66,3 @@ jobs:
         run: |
           #docker push $DOCKER_IMAGE:$DOCKER_TAG
           docker push mishaikon/devops-for-programmers-project-74:latest
-          
-          
