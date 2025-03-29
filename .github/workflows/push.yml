@@ -34,7 +34,8 @@ jobs:
 
       - name: Run tests
         run: |
-          docker compose -f docker-compose.yml run --rm app npm test
+          docker compose run --rm app sh -c "npm install && npm run pretest && npm test"
+          docker compose down
 
       - name: Build production image
         run: |
