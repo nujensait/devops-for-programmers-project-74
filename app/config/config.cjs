@@ -19,6 +19,7 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
+      dialect: 'postgres',
       host: process.env.DATABASE_HOST || 'db',
       database: process.env.DATABASE_NAME || 'postgres',
       user: process.env.DATABASE_USERNAME || 'postgres',
