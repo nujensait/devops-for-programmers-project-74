@@ -1,7 +1,10 @@
 version: '3.8'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.production
     volumes:
       - ./app:/app
+    image: mishaikon/devops-for-programmers-project-74
     command: make test
